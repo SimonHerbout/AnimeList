@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="img/fav.webp">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/tabs.js" defer></script>
+<script src="js/pagination.js" defer></script>
+<script src="js/app.js" defer></script>
+<title>uptime/// anime mirror board</title>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">// mirror_status_board</p>
+  <h1>uptime<span>/</span>/// anime &amp; manga mirrors</h1>
+  <p class="sub">
+    A directory of streaming and reading mirrors. Click "recheck" to ping every
+    site from your browser — sites that block cross-origin requests will show
+    as "unverified" rather than down, so always try the link if you're unsure.
+  </p>
+  <div class="controls">
+    <button id="recheck">recheck all</button>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="all">all</button>
+      <button class="tab" data-tab="streaming">streaming</button>
+      <button class="tab" data-tab="movies">movies</button>
+      <button class="tab" data-tab="anime">anime</button>
+      <button class="tab" data-tab="cartoon">cartoon</button>
+      <button class="tab" data-tab="manga">manga</button>
+      <button class="tab" data-tab="tools">tools</button>
+      <button class="tab" data-tab="app">app</button>
+      <button class="tab" data-tab="news">news</button>
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--online)"></span>reachable</span>
+      <span><span class="dot" style="background:var(--down)"></span>unreachable</span>
+      <span><span class="dot" style="background:var(--unknown)"></span>unverified</span>
+    </div>
+  </div>
+  <p class="stats" id="stats"></p>
+</header>
+
+<main>
+  <input class="search" id="search" type="text" placeholder="Filter by name...">
+  <div class="grid" id="grid"></div>
+  <div class="pagination">
+    <button id="prevBtn">Prev</button>
+    <span id="pageInfo"></span>
+    <button id="nextBtn">Next</button>
+</div>
+</main>
+
+<footer>
+  <p>// click recheck to test each link from your browser. browsers block most cross-site
+  status checks (CORS), so an "unverified" mirror is often perfectly fine — open it
+  to confirm. for a reliable always-on monitor, run a small server-side checker instead.</p>
+</footer>
+</body>
+</html>
