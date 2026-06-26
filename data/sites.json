@@ -95,7 +95,7 @@
         "name": "AnimeTosho",
         "url": "https://animetosho.org/",
         "category": [
-            "download",
+            "tools",
             "anime"
         ]
     },
@@ -2167,8 +2167,10 @@
         "name": "Kenmei",
         "url": "https://www.kenmei.co",
         "category": [
-            "streaming",
-            "anime"
+            "tracking",
+            "tools",
+            "manga",
+            "manhwa"
         ]
     },
     {
@@ -2225,7 +2227,8 @@
         "name": "Manhuaus",
         "url": "https://manhuaus.com/",
         "category": [
-            "manga"
+            "manga",
+            "manhwa"
         ]
     }
 ]
