@@ -2177,5 +2177,55 @@
         "category": [
             "streaming"
         ]
+    },
+    {
+        "name": "Atsumaru",
+        "url": "https://atsu.moe/",
+        "category": [
+            "manga"
+        ]
+    },
+    {
+        "name": "Comicso",
+        "url": "https://comicso.com/",
+        "category": [
+            "manga"
+        ]
+    },
+    {
+        "name": "Beast Novels",
+        "url": "https://beastnovels.com/",
+        "category": [
+            "manga"
+        ]
+    },
+    {
+        "name": "Comix",
+        "url": "https://comix.to/",
+        "category": [
+            "manga"
+        ]
+    },
+    {
+        "name": "Novelight",
+        "url": "https://novelight.net/",
+        "category": [
+            "manga"
+        ]
+    },
+    {
+        "name": "IPTV Generator",
+        "url": "https://iptvgen.pages.dev/",
+        "category": [
+            "streaming",
+            "app"
+        ]
+    },
+    {
+        "name": "Manhuaus",
+        "url": "https://manhuaus.com/",
+        "category": [
+            "manga"
+        ]
     }
 ]
