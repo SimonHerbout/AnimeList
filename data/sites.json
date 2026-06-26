@@ -2227,8 +2227,14 @@
         "name": "Manhuaus",
         "url": "https://manhuaus.com/",
         "category": [
-            "manga",
-            "manhwa"
+            "manga"
+        ]
+    },
+    {
+        "name": "GlobalComix",
+        "url": "https://globalcomix.com/",
+        "category": [
+            "manga"
         ]
     }
 ]
