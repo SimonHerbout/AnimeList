@@ -1725,6 +1725,13 @@
         ]
     },
     {
+        "name": "TappyToon",
+        "url": "https://www.tappytoon.com/",
+        "category": [
+            "manhwa"
+        ]
+    },
+    {
         "name": "Toomics",
         "url": "https://toomics.com/",
         "category": [
@@ -2160,7 +2167,8 @@
         "url": "https://retroflix.org",
         "category": [
             "streaming",
-            "anime"
+            "anime",
+            "cartoon"
         ]
     },
     {
@@ -2235,6 +2243,14 @@
         "url": "https://globalcomix.com/",
         "category": [
             "manga"
+        ]
+    },
+    {
+        "name": "All-Wish",
+        "url": "https://all-wish.me/home",
+        "category": [
+            "anime",
+            "streaming"
         ]
     }
 ]
