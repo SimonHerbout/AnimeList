@@ -101,7 +101,7 @@
     },
     {
         "name": "Reanime",
-        "url": "https://reanime.to/home",
+        "url": "https://reanime.to/",
         "category": [
             "streaming",
             "anime"
@@ -229,7 +229,7 @@
     },
     {
         "name": "Aniwatch",
-        "url": "https://aniwatch.one/",
+        "url": ["https://aniwatch.com.ro/", "https://aniwatchtv.com.ro/"],
         "category": [
             "streaming",
             "anime"
@@ -324,7 +324,7 @@
         ]
     },
     {
-        "name": "Aniwaves",
+        "name": "Aniwave",
         "url": "https://aniwaves.ru/",
         "category": [
             "streaming",
@@ -681,7 +681,7 @@
         ]
     },
     {
-        "name": "Animenosub",
+        "name": "AnimeNoSub",
         "url": "https://animenosub.to/",
         "category": [
             "streaming",
@@ -1660,7 +1660,8 @@
         "name": "Yenime",
         "url": "https://yenime.net/",
         "category": [
-            "anime"
+            "anime",
+            "streaming"
         ]
     },
     {
@@ -1966,7 +1967,9 @@
         "name": "Hayase",
         "url": "https://hayase.watch/",
         "category": [
-            "tools"
+            "tools",
+            "anime",
+            "app"
         ]
     },
     {
@@ -2252,6 +2255,84 @@
             "anime",
             "streaming"
         ]
+    },
+    {
+        "name": "Senpai Stream",
+        "url": "https://senpai-stream.bond/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anicrush",
+        "url": "https://anicrush.co/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anicrunch",
+        "url": "https://anicrunch.page/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anihub",
+        "url": "https://anihub.cc/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anichi",
+        "url": "https://anichi.my/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anime.com",
+        "url": "https://www.anime.com/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anime FLV",
+        "url": "https://anime-flv.co/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Kanime",
+        "url": "https://www.kanime.top/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Kaguya",
+        "url":"https://kaguya.io/",
+        "category": [
+            "tracking"
+        ]
+    },
+    {
+        "name": "Anihq",
+        "url": "https://anihq.cc/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
     }
-    
 ]
