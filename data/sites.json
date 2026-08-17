@@ -141,7 +141,7 @@
     },
     {
         "name": "1Anime",
-        "url": "https://1anime.app/",
+        "url": "https://1ani.me/",
         "category": [
             "streaming",
             "anime"
@@ -238,22 +238,6 @@
     {
         "name": "Mike Senpai",
         "url": "https://mike-senpai.xyz/",
-        "category": [
-            "streaming",
-            "anime"
-        ]
-    },
-    {
-        "name": "Lunaranime",
-        "url": "https://lunaranime.ru/",
-        "category": [
-            "streaming",
-            "anime"
-        ]
-    },
-    {
-        "name": "Kawaii Anime",
-        "url": "https://kawaii-anime.com/",
         "category": [
             "streaming",
             "anime"
@@ -376,7 +360,10 @@
     },
     {
         "name": "Yflix",
-        "url": "https://yflix.in/",
+        "url": [
+            "https://yflix.ws/",
+            "https://yflix.in/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -593,14 +580,6 @@
         ]
     },
     {
-        "name": "123animes",
-        "url": "https://w1.123animes.ru/",
-        "category": [
-            "streaming",
-            "anime"
-        ]
-    },
-    {
         "name": "Anikuro",
         "url": "https://anikuro.to/",
         "category": [
@@ -707,14 +686,6 @@
     {
         "name": "Animedex",
         "url": "https://animedex.fun/",
-        "category": [
-            "streaming",
-            "anime"
-        ]
-    },
-    {
-        "name": "Animelok",
-        "url": "https://animelok.net/",
         "category": [
             "streaming",
             "anime"
@@ -1157,7 +1128,11 @@
     },
     {
         "name": "Rive",
-        "url": "https://www.rivestream.app/",
+        "url": [
+            "https://www.rivestream.app/", 
+            "https://rivestream.ru/",
+            "https://rivestream.vip/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -2333,6 +2308,220 @@
         "category": [
             "anime",
             "streaming"
+        ]
+    },
+    {
+        "name": "Anivault",
+        "url": "https://www.anivault.co/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "FreeHDVideo",
+        "url": "https://freehdvideo.top/",
+        "category": [
+            "movies",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Nekowatch",
+        "url": "https://nekowatch.xyz/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Mkissa",
+        "url": "https://mkissa.to/",
+        "category": [
+            "movies",
+            "streaming",
+            "anime",
+            "manga"
+        ]
+    },
+    {
+        "name": "Kazora",
+        "url": "https://kazora.cc/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "123AnimeHub",
+        "url": "https://123animehub.cc/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "LunarX",
+        "url": "https://lunarx.to/",
+        "category": [
+            "anime",
+            "streaming",
+            "manga"
+        ]
+    },
+    {
+        "name": "Anisnatch",
+        "url": "https://anisnatch.site/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anime Uniquestream",
+        "url": "https://anime.uniquestream.net/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "BabyAnime",
+        "url": "https://babyanime.top/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anime Onsen",
+        "url": "https://www.animeonsen.xyz/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Luna Stream",
+        "url": "https://luna-stream.me/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Aninami",
+        "url": "https://www.aninami.site/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "KawaiiAnime",
+        "url": "https://kawaiianime.cc/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "FireAni",
+        "url": "https://fireani.me/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "AnimeLok",
+        "url": "https://animelok.live/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Mod Syndicate",
+        "url": "https://www.modsyndicate.com/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Google Custom Search",
+        "url": "https://cse.google.com",
+        "category": [
+            "search"
+        ]
+    },
+    {
+        "name": "Anymex",
+        "url": "https://anymex.vercel.app/",
+        "category": [
+            "anime",
+            "streaming",
+            "manga",
+            "app"
+        ]
+    },
+    {
+        "name": "PlayTorrio",
+        "url": "https://playtorrio.xyz/",
+        "category": [
+            "movies",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Anisurge",
+        "url": "https://www.anisurge.lol/",
+        "category": [
+            "anime",
+            "streaming"
+        ]
+    },
+    {
+        "name": "Lucifer Donghua",
+        "url": "https://luciferdonghua.in/",
+        "category": [
+            "donghua"
+        ]
+    },
+    {
+        "name": "LMAAnime",
+        "url": "https://lmanime.com/",
+        "category": [
+            "streaming"
+        ]
+    },
+    {
+        "name": "Donghua4K",
+        "url": "https://donghua4k.net/",
+        "category": [
+            "donghua"
+        ]
+    },
+    {
+        "name": "MyAnime",
+        "url": "https://myanime.live/",
+        "category": [
+            "streaming"
+        ]
+    },
+    {
+        "name": "FreeOnlineK",
+        "url": "https://freeonlinek.top/",
+        "category": [
+            "streaming"
+        ]
+    },
+    {
+        "name": "Crimson Fansubs",
+        "url": "https://crimsonfansubs.com/",
+        "category": [
+            "donghua"
         ]
     }
 ]
