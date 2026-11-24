@@ -277,7 +277,10 @@
     },
     {
         "name": "Miruro",
-        "url": "https://www.miruro.com/",
+        "url": [
+            "https://www.miruro.com/",
+            "https://www.miruro.to/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -293,7 +296,10 @@
     },
     {
         "name": "Animesuge",
-        "url": "https://animesuge.cz/",
+        "url": [
+            "https://animesuge.cz/",
+            "https://anisuge.tv/home"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -485,7 +491,10 @@
     },
     {
         "name": "KickAssAnime",
-        "url": "https://kaa.mx/",
+        "url": [
+            "https://kaa.mx/",
+            "https://kickass-anime.ro/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -2354,7 +2363,10 @@
     },
     {
         "name": "123AnimeHub",
-        "url": "https://123animehub.cc/",
+        "url": [
+            "https://123animehub.cc/",
+            "https://w1.123animes.ru/"
+        ],
         "category": [
             "anime",
             "streaming"
@@ -2566,6 +2578,39 @@
             "anime",
             "tools",
             "tracking"
+        ]
+    },
+    {
+        "name": "Anitaku",
+        "url": "https://anitaku.io/",
+        "category": [
+            "streaming",
+            "anime"
+        ]
+    },
+    {
+        "name": "AnimeGG",
+        "url": "https://www.animegg.org/",
+        "category": [
+            "streaming",
+            "anime"
+        ]
+    },
+    {
+        "name": "KissAnime",
+        "url": "https://kissanime.com.ru/",
+        "category": [
+            "streaming",
+            "anime"
+        ]
+    },
+    {
+        "name": "AllManga",
+        "url": "https://allmanga.to/",
+        "category": [
+            "streaming",
+            "anime",
+            "manga"
         ]
     }
 ]
