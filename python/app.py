@@ -1,21 +1,23 @@
 
 import json
 import time
+import requests
+
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Sta verzoeken toe vanaf je Netlify-website
 CORS(
     app,
     resources={
         r"/*": {
-            "origins": [
-                "https://aniquest-hub.netlify.app"
-            ]
+            "origins": ["https://aniquest-hub.netlify.app"],
+            "methods": ["GET", "POST", "OPTIONS"],
+            "allow_headers": ["Content-Type"]
         }
     }
 )
@@ -35,6 +37,10 @@ CACHE = {
     "ttl": 300
 }
 
+BATCH_SIZE = 10
+MAX_WORKERS = 5
+REQUEST_TIMEOUT = 5
+
 
 def find_data_file():
     for path in DATA_FILE_CANDIDATES:
@@ -43,10 +49,6 @@ def find_data_file():
             return path
 
     print("[ERROR] sites.json not found!")
-
-    for path in DATA_FILE_CANDIDATES:
-        print(f"[CHECKED] {path}")
-
     return None
 
 
@@ -135,6 +137,72 @@ def load_sites():
         return []
 
 
+def check_site(index, site):
+    original_url = get_primary_url(site.get("url"))
+
+    if not original_url:
+        return {
+            "index": index,
+            "name": site.get("name", "Unknown"),
+            "url": None,
+            "status": "unverified",
+            "status_code": None
+        }
+
+    url = original_url
+
+    if not url.startswith(("http://", "https://")):
+        url = "https://" + url
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; AniQuestChecker/1.0)"
+    }
+
+    try:
+        response = requests.head(
+            url,
+            timeout=REQUEST_TIMEOUT,
+            headers=headers,
+            allow_redirects=True
+        )
+
+        if response.status_code in (405, 501):
+            response.close()
+
+            response = requests.get(
+                url,
+                timeout=REQUEST_TIMEOUT,
+                headers=headers,
+                allow_redirects=True,
+                stream=True
+            )
+
+        code = response.status_code
+        response.close()
+
+        if 200 <= code < 500:
+            status = "online"
+        else:
+            status = "unverified"
+
+    except requests.Timeout:
+        status = "unverified"
+        code = None
+
+    except requests.RequestException as error:
+        print(f"[CHECK ERROR] {url}: {error}")
+        status = "offline"
+        code = None
+
+    return {
+        "index": index,
+        "name": site.get("name", "Unknown"),
+        "url": original_url,
+        "status": status,
+        "status_code": code
+    }
+
+
 @app.route("/")
 def home():
     sites = load_sites()
@@ -148,11 +216,9 @@ def home():
 
 @app.route("/health")
 def health():
-    sites = load_sites()
-
     return jsonify({
         "status": "ok",
-        "sites_loaded": len(sites)
+        "sites_loaded": len(load_sites())
     })
 
 
@@ -177,21 +243,57 @@ def sites():
     })
 
 
-@app.route("/status")
-def status():
-    # Geen externe websites controleren tijdens een API-verzoek.
-    # Dit voorkomt lange wachttijden en Render worker timeouts.
+@app.route("/check-batch", methods=["POST"])
+def check_batch():
     sites_list = load_sites()
 
-    results = []
+    data = request.get_json(silent=True) or {}
+    indices = data.get("indices")
 
-    for site in sites_list:
-        results.append({
+    if not isinstance(indices, list) or not indices:
+        return jsonify({"error": "Provide a non-empty indices list"}), 400
+
+    if len(indices) > BATCH_SIZE:
+        return jsonify({
+            "error": f"Maximum {BATCH_SIZE} websites per batch"
+        }), 400
+
+    if any(
+        not isinstance(index, int)
+        or isinstance(index, bool)
+        or index < 0
+        or index >= len(sites_list)
+        for index in indices
+    ):
+        return jsonify({"error": "Invalid site index"}), 400
+
+    unique_indices = list(dict.fromkeys(indices))
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        results = list(executor.map(
+            lambda index: check_site(index, sites_list[index]),
+            unique_indices
+        ))
+
+    return jsonify({
+        "count": len(results),
+        "results": results
+    })
+
+
+@app.route("/status")
+def status():
+    sites_list = load_sites()
+
+    results = [
+        {
             "name": site.get("name", "Unknown"),
             "url": get_primary_url(site.get("url")),
-            "status": "unchecked",
+            "status": "unverified",
             "status_code": None
-        })
+        }
+        for site in sites_list
+    ]
 
     return jsonify({
         "count": len(results),
