@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const API = "http://127.0.0.1:5000";
+  const API = window.ANIME_API_BASE || "https://animelist-tusl.onrender.com";
 
   const grid = document.getElementById("grid");
   const search = document.getElementById("search");
