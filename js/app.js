@@ -216,6 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // INIT
   // ----------------------------
   loadSites();
-  loadStatus();
-  setInterval(loadStatus, 5000);
+// Statuscontrole tijdelijk uitgeschakeld.
+// loadStatus();
 });
