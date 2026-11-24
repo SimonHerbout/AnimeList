@@ -2529,7 +2529,43 @@
         "url": "https://philiascans.org/",
         "category": [
             "manga",
-            "manwha"
+            "manhwa"
+        ]
+    },
+    {
+        "name": "Anixeo",
+        "url": "https://anixeo.tv/",
+        "category": [
+            "streaming",
+            "anime"
+        ]
+    },
+    {
+        "name": "Ani.pm",
+        "url": "https://anipm.pk/",
+        "category": [
+            "streaming",
+            "anime",
+            "manga",
+            "movies"
+        ]
+    },
+    {
+        "name": "Gotaku",
+        "url": "https://gotaku.to/",
+        "category": [
+            "streaming",
+            "anime"
+        ]
+    },
+    {
+        "name": "Anilili",
+        "url": "https://anilili.app/",
+        "category": [
+            "app",
+            "anime",
+            "tools",
+            "tracking"
         ]
     }
 ]
