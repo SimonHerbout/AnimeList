@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   const API = window.ANIME_API_BASE || "https://animelist-tusl.onrender.com";
 
@@ -8,17 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let sites = [];
   let statusMap = {};
+  let isChecking = false;
 
-  // ----------------------------
-  // URL NORMALIZATION (FIXED FOR ARRAYS + ANIMIO BUG)
-  // ----------------------------
+  const BATCH_SIZE = 10;
+  const CHECK_TIMEOUT = 7000;
+
   function normalizeUrl(url) {
-    if (!url) return "";
-
-    if (Array.isArray(url)) {
-      url = url[0];
-    }
-
+    if (Array.isArray(url)) url = url[0];
     if (typeof url !== "string") return "";
 
     return url
@@ -30,123 +27,144 @@ document.addEventListener("DOMContentLoaded", () => {
       .trim();
   }
 
-  // ----------------------------
-  // CATEGORY HANDLING (FIXED)
-  // ----------------------------
+  function getUrl(url) {
+    if (Array.isArray(url)) return url[0] || "";
+    return typeof url === "string" ? url : "";
+  }
+
   function getCategories(site) {
-  const c = site?.category;
+    const c = site?.category;
+    if (!c) return [];
 
-  if (!c) return [];
+    const categories = Array.isArray(c) ? c : String(c).split(",");
 
-  const categories = Array.isArray(c)
-    ? c
-    : String(c).split(",");
+    return categories
+      .map(x => String(x).toLowerCase().trim())
+      .filter(Boolean);
+  }
 
-  return categories
-    .map(x => String(x).toLowerCase().trim())
-    .filter(Boolean);
-}
-  
-  function statusClass(s) {
-    if (s === "online") return "online";
-    if (s === "offline" || s === "down" || s === "unreachable") return "down";
+  function statusClass(status) {
+    if (status === "online") return "online";
+    if (status === "offline") return "down";
     return "unknown";
   }
 
-  function statusLabel(s) {
-    if (!s || s === "unchecked") return "unchecked";
-    if (s === "unverified") return "unverified";
-    return s;
+  function statusLabel(status) {
+    if (status === "online") return "reachable";
+    if (status === "offline") return "unreachable";
+    return "unverified";
   }
 
-  // ----------------------------
-  // FILTER (FIXED MULTI CATEGORY MATCH)
-  // ----------------------------
   function getFiltered() {
     const q = (search?.value || "").toLowerCase();
     const currentTab = (Tabs?.getCurrentTab?.() || "all").toLowerCase();
 
-    return sites.filter(s => {
-      const nameMatch = (s.name || "").toLowerCase().includes(q);
-
-      const cats = getCategories(s);
-
+    return sites.filter(site => {
+      const nameMatch = (site.name || "").toLowerCase().includes(q);
       const tabMatch =
         currentTab === "all" ||
-        cats.includes(currentTab); // IMPORTANT FIX: multi-category works
+        getCategories(site).includes(currentTab);
 
       return nameMatch && tabMatch;
     });
   }
 
-  // ----------------------------
-  // CARD
-  // ----------------------------
   function card(site) {
     const key = normalizeUrl(site.url);
-    const status = statusMap[key] || "unchecked";
+    const status = statusMap[key] || "unverified";
+    const url = getUrl(site.url);
 
     const el = document.createElement("div");
     el.className = "card";
 
-    el.innerHTML = `
-      <div class="card-top">
-        <a class="name" href="${Array.isArray(site.url) ? site.url[0] : site.url}" target="_blank">
-          ${site.name}
-        </a>
-      </div>
+    const top = document.createElement("div");
+    top.className = "card-top";
 
-      <div class="url">${Array.isArray(site.url) ? site.url[0] : site.url}</div>
+    const link = document.createElement("a");
+    link.className = "name";
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = site.name || "Unknown";
 
-      <div class="card-tags">
-        ${getCategories(site).map(c => `<span class="card-tag">${c}</span>`).join("")}
-      </div>
+    top.appendChild(link);
 
-      <div class="status-row">
-        <span class="ping ${statusClass(status)}"></span>
-        <span class="status-text ${statusClass(status)}">${statusLabel(status)}</span>
-      </div>
-    `;
+    const urlEl = document.createElement("div");
+    urlEl.className = "url";
+    urlEl.textContent = url;
+
+    const tags = document.createElement("div");
+    tags.className = "card-tags";
+
+    getCategories(site).forEach(category => {
+      const tag = document.createElement("span");
+      tag.className = "card-tag";
+      tag.textContent = category;
+      tags.appendChild(tag);
+    });
+
+    const statusRow = document.createElement("div");
+    statusRow.className = "status-row";
+
+    const ping = document.createElement("span");
+    ping.className = `ping ${statusClass(status)}`;
+
+    const label = document.createElement("span");
+    label.className = `status-text ${statusClass(status)}`;
+    label.textContent = statusLabel(status);
+
+    statusRow.append(ping, label);
+    el.append(top, urlEl, tags, statusRow);
 
     return el;
   }
 
-  // ----------------------------
-  // RENDER
-  // ----------------------------
   function render() {
-    const filtered = getFiltered();
+    if (!grid || !stats) return;
 
+    const filtered = getFiltered();
     const { start, end } = Pagination.update(filtered.length);
     const pageItems = filtered.slice(start, end);
 
     grid.innerHTML = "";
-    pageItems.forEach(s => grid.appendChild(card(s)));
+    pageItems.forEach(site => grid.appendChild(card(site)));
 
-    const online = filtered.filter(s => {
-      const key = normalizeUrl(s.url);
-      return statusMap[key] === "online";
-    }).length;
+    const online = filtered.filter(site =>
+      statusMap[normalizeUrl(site.url)] === "online"
+    ).length;
 
-    stats.innerHTML = `
-      <b>${filtered.length}</b> shown —
-      <b>${online}</b> online &nbsp;|&nbsp;
-      <b>${sites.length}</b> total
-    `;
+    const offline = filtered.filter(site =>
+      statusMap[normalizeUrl(site.url)] === "offline"
+    ).length;
+
+    const unverified = filtered.length - online - offline;
+
+    stats.textContent =
+      `${filtered.length} shown — ${online} online | ` +
+      `${offline} unreachable | ${unverified} unverified | ${sites.length} total`;
   }
 
-  // ----------------------------
-  // LOAD SITES (FIXED)
-  // ----------------------------
   async function loadSites() {
     try {
       const res = await fetch(`${API}/sites`);
-      const data = await res.json();
 
+      if (!res.ok) {
+        throw new Error(`Sites API error: ${res.status}`);
+      }
+
+      const data = await res.json();
       sites = Array.isArray(data.results) ? data.results : [];
 
-    } catch (e) {
-      console.error(e);
+      // Begin met een neutrale status
+      sites.forEach(site => {
+        const key = normalizeUrl(site.url);
+        if (!(key in statusMap)) {
+          statusMap[key] = "unverified";
+        }
+      });
+
+    } catch (error) {
+      console.error("Could not load sites:", error);
       stats.textContent = "API not reachable";
       sites = [];
     }
@@ -155,48 +173,100 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   }
 
-  // ----------------------------
-  // LOAD STATUS (FIXED + MAPPING FIX)
-  // ----------------------------
-  async function loadStatus() {
-    try {
-      const res = await fetch(`${API}/status`);
-      const data = await res.json();
+  // Controleer één website vanuit de browser.
+  // Een CORS-blokkade betekent unverified, niet offline.
+  async function checkSite(site) {
+    const originalUrl = getUrl(site.url);
+    if (!originalUrl) return "unverified";
 
-      console.log("STATUS RESPONSE:", data); // 👈 HERE
+    let url = originalUrl;
 
-      statusMap = {};
-
-      if (Array.isArray(data.results)) {
-        data.results.forEach(s => {
-          const key = normalizeUrl(s.url);
-          statusMap[key] = s.status;
-        });
-      }
-
-    } catch (e) {
-      console.error(e);
-      statusMap = {};
+    if (!/^https?:\/\//i.test(url)) {
+      url = "https://" + url;
     }
 
-    render();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), CHECK_TIMEOUT);
+
+    try {
+      await fetch(url, {
+        method: "HEAD",
+        mode: "no-cors",
+        cache: "no-store",
+        signal: controller.signal
+      });
+
+      // no-cors geeft een opaque response. We kunnen de HTTP-status
+      // niet betrouwbaar lezen, dus dit is geen bewezen online-status.
+      return "unverified";
+
+    } catch (error) {
+      if (error.name === "AbortError") {
+        return "unverified";
+      }
+
+      return "unverified";
+
+    } finally {
+      clearTimeout(timeout);
+    }
   }
 
-  // ----------------------------
-  // EVENTS
-  // ----------------------------
+  async function recheckAll() {
+    if (isChecking || sites.length === 0) return;
+
+    isChecking = true;
+
+    if (recheckBtn) {
+      recheckBtn.disabled = true;
+    }
+
+    const total = sites.length;
+    let completed = 0;
+
+    // Toon eerst dat de controles opnieuw gestart zijn
+    sites.forEach(site => {
+      statusMap[normalizeUrl(site.url)] = "unverified";
+    });
+
+    render();
+
+    try {
+      for (let i = 0; i < total; i += BATCH_SIZE) {
+        const batch = sites.slice(i, i + BATCH_SIZE);
+
+        await Promise.all(
+          batch.map(async site => {
+            const key = normalizeUrl(site.url);
+            statusMap[key] = await checkSite(site);
+            completed++;
+          })
+        );
+
+        if (recheckBtn) {
+          recheckBtn.textContent = `checking ${completed}/${total}`;
+        }
+
+        render();
+      }
+    } finally {
+      isChecking = false;
+
+      if (recheckBtn) {
+        recheckBtn.disabled = false;
+        recheckBtn.textContent = "recheck all";
+      }
+
+      render();
+    }
+  }
+
   search?.addEventListener("input", () => {
     Pagination.reset();
     render();
   });
 
-  recheckBtn?.addEventListener("click", async () => {
-    recheckBtn.disabled = true;
-    recheckBtn.textContent = "checking...";
-    await loadStatus();
-    recheckBtn.disabled = false;
-    recheckBtn.textContent = "recheck all";
-  });
+  recheckBtn?.addEventListener("click", recheckAll);
 
   Tabs?.init?.(() => {
     Pagination.reset();
@@ -209,13 +279,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       Pagination.goToPage(page);
     }
+
     render();
   });
 
-  // ----------------------------
-  // INIT
-  // ----------------------------
   loadSites();
-// Statuscontrole tijdelijk uitgeschakeld.
-// loadStatus();
 });
