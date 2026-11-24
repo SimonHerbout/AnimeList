@@ -1,3 +1,4 @@
+
 import json
 import time
 import requests
@@ -10,26 +11,32 @@ app = Flask(__name__)
 CORS(app)
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_FILE = BASE_DIR.parent / "data" / "sites.json"
 
-# ---------------------------
-# CACHE
-# ---------------------------
-CACHE = {
-    "sites": None,
-    "timestamp": 0,
-    "ttl": 60
-}
+# Zoek sites.json op verschillende mogelijke locaties
+DATA_FILE_CANDIDATES = [
+    BASE_DIR.parent / "data" / "sites.json",
+    BASE_DIR / "data" / "sites.json",
+    Path.cwd() / "data" / "sites.json",
+    Path.cwd().parent / "data" / "sites.json",
+]
 
-STATUS_CACHE = {
-    "data": None,
-    "timestamp": 0,
-    "ttl": 120
-}
+CACHE = {"sites": None, "timestamp": 0, "ttl": 60}
+STATUS_CACHE = {"data": None, "timestamp": 0, "ttl": 120}
 
-# ---------------------------
-# URL HELPERS (CRITICAL FIX)
-# ---------------------------
+
+def find_data_file():
+    for path in DATA_FILE_CANDIDATES:
+        if path.is_file():
+            print(f"[DATA] Found sites.json: {path}")
+            return path
+
+    print("[ERROR] sites.json not found!")
+    for path in DATA_FILE_CANDIDATES:
+        print(f"[CHECKED] {path}")
+
+    return None
+
+
 def get_primary_url(url):
     if isinstance(url, list):
         return url[0].strip() if url else None
@@ -39,9 +46,6 @@ def get_primary_url(url):
 
 
 def normalize_url(url):
-    """
-    IMPORTANT: must match frontend normalization OR status mapping breaks.
-    """
     url = get_primary_url(url)
     if not url:
         return None
@@ -49,26 +53,19 @@ def normalize_url(url):
     url = url.lower().strip()
     url = url.replace("https://", "").replace("http://", "")
     url = url.replace("www.", "")
-    url = url.split("#")[0]
-    url = url.rstrip("/")
-
-    return url
+    return url.split("#")[0].rstrip("/")
 
 
-# ---------------------------
-# LOAD + DEDUPE
-# ---------------------------
 def remove_duplicates(sites):
     seen = set()
     result = []
 
     for site in sites:
-        key = normalize_url(site.get("url"))
-        if not key:
+        if not isinstance(site, dict):
             continue
 
-        # ONLY exact duplicates removed
-        if key in seen:
+        key = normalize_url(site.get("url"))
+        if not key or key in seen:
             continue
 
         seen.add(key)
@@ -80,65 +77,80 @@ def remove_duplicates(sites):
 def load_sites():
     now = time.time()
 
-    if CACHE["sites"] and (now - CACHE["timestamp"] < CACHE["ttl"]):
+    if (
+        CACHE["sites"] is not None
+        and now - CACHE["timestamp"] < CACHE["ttl"]
+    ):
         return CACHE["sites"]
 
-    try:
-        if not DATA_FILE.exists():
-            return []
+    data_file = find_data_file()
 
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
+    if data_file is None:
+        return []
+
+    try:
+        with open(data_file, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        # Ondersteun zowel een directe lijst als een JSON-object
+        if isinstance(data, dict):
+            for key in ("sites", "results", "data"):
+                if isinstance(data.get(key), list):
+                    data = data[key]
+                    break
 
         if not isinstance(data, list):
-            data = []
+            print("[ERROR] sites.json does not contain a list")
+            return []
 
         cleaned = remove_duplicates(data)
 
         CACHE["sites"] = cleaned
         CACHE["timestamp"] = now
 
-        print(f"[LOAD] sites loaded: {len(cleaned)}")
+        print(f"[LOAD] Sites loaded: {len(cleaned)}")
+        print(f"[LOAD] Original entries: {len(data)}")
 
         return cleaned
 
-    except Exception as e:
-        print("Load error:", e)
+    except Exception as error:
+        print(f"[ERROR] Could not load sites.json: {error}")
         return []
 
 
-# ---------------------------
-# STATUS CHECK (FIXED REAL WORLD RELIABILITY)
-# ---------------------------
 def check_site(site):
     name = site.get("name", "Unknown")
     url = get_primary_url(site.get("url"))
-    code = None
 
     if not url:
-        return {"name": name, "url": None, "status": "invalid"}
+        return {
+            "name": name,
+            "url": None,
+            "status": "invalid"
+        }
 
     try:
-        r = requests.get(
+        if not url.startswith(("http://", "https://")):
+            url = "https://" + url
+
+        response = requests.get(
             url,
             timeout=8,
-            headers={
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-                "Accept": "text/html,application/xhtml+xml"
-            },
+            headers={"User-Agent": "Mozilla/5.0"},
             allow_redirects=True
         )
 
-        code = r.status_code
+        code = response.status_code
 
-        if code in [200, 301, 302, 304]:
+        if code in (200, 301, 302, 304):
             status = "online"
-        elif code in [403, 429, 503]:
+        elif code in (403, 429, 503):
             status = "online (restricted)"
         else:
             status = "offline"
 
-    except requests.RequestException:
+    except requests.RequestException as error:
+        print(f"[STATUS ERROR] {url}: {error}")
         status = "offline"
         code = None
 
@@ -150,25 +162,36 @@ def check_site(site):
     }
 
 
-# ---------------------------
-# ROUTES
-# ---------------------------
 @app.route("/")
 def home():
+    sites = load_sites()
+
     return jsonify({
         "message": "API running",
-        "sites_count": len(load_sites())
+        "sites_count": len(sites),
+        "data_file_found": find_data_file() is not None
     })
 
 
-# ---------------------------
-# SITES
+@app.route("/health")
+def health():
+    sites = load_sites()
+
+    return jsonify({
+        "status": "ok",
+        "sites_loaded": len(sites)
+    })
+
+
 @app.route("/sites")
 def sites():
     sites_list = load_sites()
 
-    page = int(request.args.get("page", 1))
-    limit = int(request.args.get("limit", 10000))  # allow ALL by default
+    try:
+        page = max(1, int(request.args.get("page", 1)))
+        limit = min(10000, max(1, int(request.args.get("limit", 10000))))
+    except ValueError:
+        return jsonify({"error": "Invalid page or limit"}), 400
 
     start = (page - 1) * limit
     end = start + limit
@@ -181,14 +204,14 @@ def sites():
     })
 
 
-# ---------------------------
-# STATUS (FAST + CONSISTENT)
-# ---------------------------
 @app.route("/status")
 def status():
     now = time.time()
 
-    if STATUS_CACHE["data"] and (now - STATUS_CACHE["timestamp"] < STATUS_CACHE["ttl"]):
+    if (
+        STATUS_CACHE["data"] is not None
+        and now - STATUS_CACHE["timestamp"] < STATUS_CACHE["ttl"]
+    ):
         return jsonify(STATUS_CACHE["data"])
 
     sites_list = load_sites()
@@ -196,15 +219,15 @@ def status():
     with ThreadPoolExecutor(max_workers=20) as executor:
         results = list(executor.map(check_site, sites_list))
 
-    # 🔥 COUNT STATS
-    total = len(results)
-    online = sum(1 for s in results if s["status"] == "online")
-    offline = sum(1 for s in results if s["status"] != "online")
+    online = sum(
+        1 for site in results
+        if site["status"] == "online"
+    )
 
     payload = {
-        "count": total,
+        "count": len(results),
         "online": online,
-        "offline": offline,
+        "offline": len(results) - online,
         "results": results
     }
 
@@ -213,15 +236,11 @@ def status():
 
     return jsonify(payload)
 
-# ---------------------------
-# RUN
-# ---------------------------
+
 if __name__ == "__main__":
-    print("Server running...")
     app.run(
-        host="127.0.0.1",
+        host="0.0.0.0",
         port=5000,
         debug=False,
-        threaded=True,
-        use_reloader=False
+        threaded=True
     )
