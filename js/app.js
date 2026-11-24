@@ -12,14 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let isChecking = false;
 
   const BATCH_SIZE = 10;
-  const CHECK_TIMEOUT = 7000;
 
   function normalizeUrl(url) {
     if (Array.isArray(url)) url = url[0];
     if (typeof url !== "string") return "";
 
-    return url
-      .toLowerCase()
+    return url.toLowerCase()
       .replace(/^https?:\/\//, "")
       .replace(/^www\./, "")
       .split("#")[0]
@@ -57,7 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getFiltered() {
     const q = (search?.value || "").toLowerCase();
-    const currentTab = (Tabs?.getCurrentTab?.() || "all").toLowerCase();
+
+    const currentTab =
+      typeof Tabs !== "undefined"
+        ? (Tabs.getCurrentTab?.() || "all").toLowerCase()
+        : "all";
 
     return sites.filter(site => {
       const nameMatch = (site.name || "").toLowerCase().includes(q);
@@ -123,11 +125,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!grid || !stats) return;
 
     const filtered = getFiltered();
-    const { start, end } = Pagination.update(filtered.length);
-    const pageItems = filtered.slice(start, end);
+
+    let start = 0;
+    let end = filtered.length;
+
+    if (typeof Pagination !== "undefined") {
+      const page = Pagination.update(filtered.length);
+      start = page.start;
+      end = page.end;
+    }
 
     grid.innerHTML = "";
-    pageItems.forEach(site => grid.appendChild(card(site)));
+
+    filtered.slice(start, end).forEach(site => {
+      grid.appendChild(card(site));
+    });
 
     const online = filtered.filter(site =>
       statusMap[normalizeUrl(site.url)] === "online"
@@ -140,22 +152,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const unverified = filtered.length - online - offline;
 
     stats.textContent =
-      `${filtered.length} shown — ${online} online | ` +
-      `${offline} unreachable | ${unverified} unverified | ${sites.length} total`;
+      `${filtered.length} shown — ` +
+      `${online} online | ${offline} unreachable | ` +
+      `${unverified} unverified | ${sites.length} total`;
   }
 
   async function loadSites() {
     try {
-      const res = await fetch(`${API}/sites`);
+      const response = await fetch(`${API}/sites`);
 
-      if (!res.ok) {
-        throw new Error(`Sites API error: ${res.status}`);
+      if (!response.ok) {
+        throw new Error(`Sites API error: ${response.status}`);
       }
 
-      const data = await res.json();
+      const data = await response.json();
       sites = Array.isArray(data.results) ? data.results : [];
 
-      // Begin met een neutrale status
       sites.forEach(site => {
         const key = normalizeUrl(site.url);
         if (!(key in statusMap)) {
@@ -165,51 +177,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (error) {
       console.error("Could not load sites:", error);
-      stats.textContent = "API not reachable";
+      if (stats) stats.textContent = "API not reachable";
       sites = [];
     }
 
-    Pagination.reset();
+    if (typeof Pagination !== "undefined") {
+      Pagination.reset();
+    }
+
     render();
   }
 
-  // Controleer één website vanuit de browser.
-  // Een CORS-blokkade betekent unverified, niet offline.
-  async function checkSite(site) {
-    const originalUrl = getUrl(site.url);
-    if (!originalUrl) return "unverified";
+  async function checkBatch(batch, startIndex) {
+    const indices = batch.map((site, i) => startIndex + i);
 
-    let url = originalUrl;
+    const response = await fetch(`${API}/check-batch`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ indices })
+    });
 
-    if (!/^https?:\/\//i.test(url)) {
-      url = "https://" + url;
+    if (!response.ok) {
+      throw new Error(`Batch check failed: HTTP ${response.status}`);
     }
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), CHECK_TIMEOUT);
+    const data = await response.json();
 
-    try {
-      await fetch(url, {
-        method: "HEAD",
-        mode: "no-cors",
-        cache: "no-store",
-        signal: controller.signal
-      });
+    if (!Array.isArray(data.results)) {
+      throw new Error("Invalid batch response");
+    }
 
-      // no-cors geeft een opaque response. We kunnen de HTTP-status
-      // niet betrouwbaar lezen, dus dit is geen bewezen online-status.
-      return "unverified";
+    data.results.forEach(result => {
+      const key = normalizeUrl(result.url);
 
-    } catch (error) {
-      if (error.name === "AbortError") {
-        return "unverified";
+      if (key) {
+        statusMap[key] = result.status;
       }
-
-      return "unverified";
-
-    } finally {
-      clearTimeout(timeout);
-    }
+    });
   }
 
   async function recheckAll() {
@@ -223,8 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const total = sites.length;
     let completed = 0;
+    let failedBatches = 0;
 
-    // Toon eerst dat de controles opnieuw gestart zijn
     sites.forEach(site => {
       statusMap[normalizeUrl(site.url)] = "unverified";
     });
@@ -235,13 +241,18 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < total; i += BATCH_SIZE) {
         const batch = sites.slice(i, i + BATCH_SIZE);
 
-        await Promise.all(
-          batch.map(async site => {
-            const key = normalizeUrl(site.url);
-            statusMap[key] = await checkSite(site);
-            completed++;
-          })
-        );
+        try {
+          await checkBatch(batch, i);
+        } catch (error) {
+          failedBatches++;
+          console.error("Batch error:", error);
+
+          batch.forEach(site => {
+            statusMap[normalizeUrl(site.url)] = "unverified";
+          });
+        }
+
+        completed += batch.length;
 
         if (recheckBtn) {
           recheckBtn.textContent = `checking ${completed}/${total}`;
@@ -254,34 +265,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (recheckBtn) {
         recheckBtn.disabled = false;
-        recheckBtn.textContent = "recheck all";
+        recheckBtn.textContent =
+          failedBatches > 0 ? "recheck all (some failed)" : "recheck all";
       }
 
       render();
+
+      console.log("Recheck complete:", {
+        total,
+        online: Object.values(statusMap).filter(s => s === "online").length,
+        offline: Object.values(statusMap).filter(s => s === "offline").length,
+        failedBatches
+      });
     }
   }
 
   search?.addEventListener("input", () => {
-    Pagination.reset();
+    if (typeof Pagination !== "undefined") {
+      Pagination.reset();
+    }
     render();
   });
 
   recheckBtn?.addEventListener("click", recheckAll);
 
-  Tabs?.init?.(() => {
-    Pagination.reset();
-    render();
-  });
+  if (typeof Tabs !== "undefined") {
+    Tabs.init?.(() => {
+      if (typeof Pagination !== "undefined") {
+        Pagination.reset();
+      }
+      render();
+    });
+  }
 
-  Pagination?.init?.((page, isNext) => {
-    if (isNext) {
-      Pagination.goToPage(Pagination.getCurrentPage() + 1);
-    } else {
-      Pagination.goToPage(page);
-    }
-
-    render();
-  });
+  if (typeof Pagination !== "undefined") {
+    Pagination.init?.((page, isNext) => {
+      if (isNext) {
+        Pagination.goToPage(Pagination.getCurrentPage() + 1);
+      } else {
+        Pagination.goToPage(page);
+      }
+      render();
+    });
+  }
 
   loadSites();
 });
