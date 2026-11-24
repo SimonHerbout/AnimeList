@@ -1099,7 +1099,8 @@
         "url": "https://www.netflix.com/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1107,7 +1108,8 @@
         "url": "https://www.hulu.com/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1135,7 +1137,8 @@
         ],
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1195,7 +1198,8 @@
         "url": "https://coreflix.tv/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1268,7 +1272,8 @@
         "url": "https://67movies.net/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1311,7 +1316,8 @@
         "url": "https://pontv.to/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1327,7 +1333,8 @@
         "url": "https://redflix.co/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1400,7 +1407,8 @@
         "url": "https://willowmovies.com/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1408,7 +1416,8 @@
         "url": "https://smashystream.xyz/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1416,7 +1425,8 @@
         "url": "https://vidplay.to/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1432,7 +1442,8 @@
         "url": "https://www.primewire.mov/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1456,7 +1467,8 @@
         "url": "https://vidbox.wtf/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1464,7 +1476,8 @@
         "url": "https://ww1.hair/crackle/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1472,7 +1485,8 @@
         "url": "https://flixnet.site/moviesjoy/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1480,7 +1494,8 @@
         "url": "https://popcornflix.rest/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1488,7 +1503,8 @@
         "url": "https://vumoo.gd/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1496,7 +1512,8 @@
         "url": "https://flixmovie.cc/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1504,7 +1521,8 @@
         "url": "https://cinebloom.cc/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1512,7 +1530,8 @@
         "url": "https://onlyflix.to/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1520,7 +1539,8 @@
         "url": "https://ww25.soap2day.day/",
         "category": [
             "streaming",
-            "movies"
+            "movies",
+            "series"
         ]
     },
     {
@@ -1872,14 +1892,16 @@
         "name": "Myanime.live",
         "url": "https://myanime.live/",
         "category": [
-            "donghua"
+            "donghua",
+            "streaming"
         ]
     },
     {
         "name": "LManime",
         "url": "https://lmanime.com/",
         "category": [
-            "donghua"
+            "donghua",
+            "streaming"
         ]
     },
     {
@@ -2109,7 +2131,8 @@
         "category": [
             "app",
             "movies",
-            "tools"
+            "tools",
+            "series"
         ]
     },
     {
@@ -2117,7 +2140,8 @@
         "url": "https://playtorrio.xyz/",
         "category": [
             "app",
-            "movies"
+            "movies",
+            "streaming"
         ]
     },
     {
@@ -2407,7 +2431,8 @@
         "url": "https://freehdvideo.top/",
         "category": [
             "movies",
-            "streaming"
+            "streaming",
+            "series"
         ]
     },
     {
@@ -2481,14 +2506,6 @@
         ]
     },
     {
-        "name": "Anime Onsen",
-        "url": "https://www.animeonsen.xyz/",
-        "category": [
-            "anime",
-            "streaming"
-        ]
-    },
-    {
         "name": "Luna Stream",
         "url": "https://luna-stream.me/",
         "category": [
@@ -2554,14 +2571,6 @@
         ]
     },
     {
-        "name": "PlayTorrio",
-        "url": "https://playtorrio.xyz/",
-        "category": [
-            "movies",
-            "streaming"
-        ]
-    },
-    {
         "name": "Anisurge",
         "url": "https://www.anisurge.lol/",
         "category": [
@@ -2577,24 +2586,10 @@
         ]
     },
     {
-        "name": "LMAAnime",
-        "url": "https://lmanime.com/",
-        "category": [
-            "streaming"
-        ]
-    },
-    {
         "name": "Donghua4K",
         "url": "https://donghua4k.net/",
         "category": [
             "donghua"
-        ]
-    },
-    {
-        "name": "MyAnime",
-        "url": "https://myanime.live/",
-        "category": [
-            "streaming"
         ]
     },
     {
