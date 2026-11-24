@@ -1155,7 +1155,10 @@
     },
     {
         "name": "PopcornMovies",
-        "url": "https://popcornmovies.org/",
+        "url": [
+            "https://popcornmovies.org/",
+            "https://popcornmovies.ac/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1220,7 +1223,10 @@
     },
     {
         "name": "Aether",
-        "url": "https://aether.bar/",
+        "url": [
+            "https://aether.bar/",
+            "https://aether.ist/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1244,7 +1250,10 @@
     },
     {
         "name": "NEPU",
-        "url": "https://nepu.to/",
+        "url": [
+            "https://nepu.to/",
+            "https://nepu.io/"
+        ],
         "category": [
             "streaming",
             "movies",
@@ -1269,7 +1278,10 @@
     },
     {
         "name": "67Movies",
-        "url": "https://67movies.net/",
+        "url": [
+            "https://67movies.net/",
+            "https://67movies.st/"
+        ],
         "category": [
             "streaming",
             "movies",
@@ -1297,7 +1309,10 @@
     },
     {
         "name": "HydraHD",
-        "url": "https://hydrahd.com/",
+        "url": [
+            "https://hydrahd.com/",
+            "https://hydrahd.gd/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1387,7 +1402,10 @@
     },
     {
         "name": "MovieBite",
-        "url": "https://moviebite.cc/",
+        "url": [
+            "https://moviebite.cc/",
+            "https://moviebite.org/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1422,7 +1440,10 @@
     },
     {
         "name": "VidPlay",
-        "url": "https://vidplay.to/",
+        "url": [
+            "https://vidplay.to/",
+            "https://vidplay.top/"
+        ],
         "category": [
             "streaming",
             "movies",
@@ -1456,7 +1477,10 @@
     },
     {
         "name": "OnionPlay",
-        "url": "https://onionplay.io/",
+        "url": [
+            "https://onionplay.io/",
+            "https://onionplay.ae/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1537,6 +1561,224 @@
     {
         "name": "Soap2Day",
         "url": "https://ww25.soap2day.day/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Soap2Night",
+        "url": "https://soap2night.cc/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Ramoflix",
+        "url": "https://ramoflix.net/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Doraby",
+        "url": "https://doraby.com/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "WMovies",
+        "url": "https://wmovies.nl/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Goojara",
+        "url": "https://ww1.goojara.to/",
+        "category": [
+            "streaming",
+            "movies",
+            "series",
+            "anime"
+        ]
+    },
+    {
+        "name": "7Movies",
+        "url": "https://7movies.ac/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Movy",
+        "url": "https://movy.sx/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "PrimeShows",
+        "url": "https://primeshows.org/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Stellar",
+        "url": "https://stellar.rip/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "PressPlayZ",
+        "url": "https://pressplayz.top/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "FMovies",
+        "url": "https://fmoviess.org/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Soap2DayHD",
+        "url": "https://soap2dayhd.net/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Mapple",
+        "url": "https://mapple.fun/",
+        "category": [
+            "streaming",
+            "movies",
+            "series",
+            "anime"
+        ]
+    },
+    {
+        "name": "StreamEx",
+        "url": "https://www.streamex.hn/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "OpStream",
+        "url": "https://opstream.fun/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "LatestMovies",
+        "url": "https://latestmovies.net/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "MovieBox",
+        "url": "https://officialmoviebox.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "HDToday",
+        "url": "https://hdtoday24.at/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "CinebyTV",
+        "url": "https://cinebytv.com/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "RidoMovie",
+        "url": "https://ridomovie.to/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "123MoviesFree",
+        "url": "https://ww7.123moviesfree.net/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "YesMovies",
+        "url": "https://ww2.yesmovies.ag/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "MoviePire",
+        "url": "https://moviepire.ru/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Flicker",
+        "url": "https://flicker-mini.pages.dev/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "M4UHD",
+        "url": "https://ww2.m4uhd.page/",
         "category": [
             "streaming",
             "movies",
