@@ -1129,7 +1129,10 @@
     },
     {
         "name": "Cineby",
-        "url": "https://cineby.at/",
+        "url": [
+            "https://cineby.cab/",
+            "https://cineby.at/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1443,6 +1446,78 @@
     {
         "name": "OnionPlay",
         "url": "https://onionplay.io/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Vidbox",
+        "url": "https://vidbox.wtf/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Crackle",
+        "url": "https://ww1.hair/crackle/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "MoviesJoy",
+        "url": "https://flixnet.site/moviesjoy/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Popcornflix",
+        "url": "https://popcornflix.rest/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Vumoo",
+        "url": "https://vumoo.gd/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "FlixMovie",
+        "url": "https://flixmovie.cc/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Cinebloom",
+        "url": "https://cinebloom.cc/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "OnlyFlix",
+        "url": "https://onlyflix.to/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Soap2Day",
+        "url": "https://ww25.soap2day.day/",
         "category": [
             "streaming",
             "movies"
