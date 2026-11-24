@@ -2524,4 +2524,12 @@
             "donghua"
         ]
     }
+    {
+        "name": "Philia scans",
+        "url": "https://philiascans.org/",
+        "category": [
+            "manga",
+            "manwha"
+        ]
+    }
 ]
