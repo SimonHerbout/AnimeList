@@ -34,21 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // CATEGORY HANDLING (FIXED)
   // ----------------------------
   function getCategories(site) {
-    const c = site?.category;
+  const c = site?.category;
 
-    if (!c) return [];
+  if (!c) return [];
 
-    if (Array.isArray(c)) {
-      return c.map(x => String(x).toLowerCase().trim());
-    }
+  const categories = Array.isArray(c)
+    ? c
+    : String(c).split(",");
 
-    if (typeof c === "string") {
-      return c.split(",").map(x => x.toLowerCase().trim()).filter(Boolean);
-    }
-
-    return [];
-  }
-
+  return categories
+    .map(x => String(x).toLowerCase().trim())
+    .filter(Boolean);
+}
+  
   function statusClass(s) {
     if (s === "online") return "online";
     if (s === "offline" || s === "down" || s === "unreachable") return "down";
