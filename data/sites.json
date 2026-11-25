@@ -29,7 +29,10 @@
     },
     {
         "name": "AnimePahe",
-        "url": "https://animepahe.pw/",
+        "url": [
+            "https://animepahe.pw/",
+            "https://animepahe.ru/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -53,7 +56,10 @@
     },
     {
         "name": "Animio",
-        "url": "https://animio.co/",
+        "url": [
+            "https://animio.org/",
+            "https://animio.app/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -85,7 +91,10 @@
     },
     {
         "name": "AnimeFreak",
-        "url": "https://animefreak.to/",
+        "url": [
+            "https://animefreak.top/",
+            "https://animefreak.pro/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -125,7 +134,9 @@
     },
     {
         "name": "Kuroanime",
-        "url": "https://kuroanime.lol/",
+        "url": [
+            "https://kuroanime.net/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -205,7 +216,10 @@
     },
     {
         "name": "Zairaku",
-        "url": "https://zairaku.site/home",
+        "url": [
+            "https://zairaku.site/",
+            "https://www.zairaku.site/home"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -340,8 +354,8 @@
     {
         "name": "Animetsu",
         "url": [
-            "https://animetsu.net/",
-            "https://animetsu.cc/"
+            "https://animetsu.app/",
+            "https://animetsu.co/"
         ],
         "category": [
             "streaming",
@@ -377,7 +391,10 @@
     },
     {
         "name": "StreamIndex",
-        "url": "https://streamindex.live/sites",
+        "url": [
+            "https://streamindex.xyz/",
+            "https://streamindex.space/"
+        ],
         "category": [
             "tools"
         ]
@@ -448,7 +465,10 @@
     },
     {
         "name": "AnimeStreamX",
-        "url": "https://anime.streamxtv.tech/",
+        "url": [
+            "https://streamxtv.net/",
+            "https://anime.streamxtv.tech/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -456,7 +476,10 @@
     },
     {
         "name": "YoAnime",
-        "url": "https://www.yoanime.me/",
+        "url": [
+            "https://yoanime.tv/",
+            "https://www.yoanime.me/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -510,7 +533,10 @@
     },
     {
         "name": "AniNeko",
-        "url": "https://anineko.to/",
+        "url": [
+            "https://anineko.cc/",
+            "https://anineko.site/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -534,7 +560,10 @@
     },
     {
         "name": "AnimeDex",
-        "url": "https://animedex.live/",
+        "url": [
+            "https://animedex.fun/home",
+            "https://animedex.fun/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -590,7 +619,9 @@
     },
     {
         "name": "Anikuro",
-        "url": "https://anikuro.to/",
+        "url": [
+            "https://anikuro.stream/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -622,7 +653,10 @@
     },
     {
         "name": "AnimeRealms",
-        "url": "https://www.animerealms.org/",
+        "url": [
+            "https://animerealms.me/",
+            "https://www.animerealms.org/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -630,7 +664,10 @@
     },
     {
         "name": "Anime8",
-        "url": "https://anime8.ru/",
+        "url": [
+            "https://anime8.org/",
+            "https://anime8.in/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -638,7 +675,11 @@
     },
     {
         "name": "AnimeHub",
-        "url": "https://animehub.ac",
+        "url": [
+            "https://animehub.one/",
+            "https://animehub.bond/",
+            "https://animehub.ac"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -742,7 +783,10 @@
     },
     {
         "name": "Aniversehd",
-        "url": "https://aniversehd.com/",
+        "url": [
+            "https://aniversehd.xyz/",
+            "https://aniversehd.com/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -790,7 +834,10 @@
     },
     {
         "name": "Kaido",
-        "url": "https://kaido.to/",
+        "url": [
+            "https://kaido.lol/",
+            "https://kaido.to/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -855,7 +902,10 @@
     },
     {
         "name": "SoraStream",
-        "url": "https://sorastream.com/",
+        "url": [
+            "https://sorastream.org/",
+            "https://sorastream.com/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -863,7 +913,10 @@
     },
     {
         "name": "SukiAnime",
-        "url": "https://sukianime.com/",
+        "url": [
+            "https://sukinime.org/",
+            "https://sukianime.com/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -887,7 +940,11 @@
     },
     {
         "name": "Voir-Anime",
-        "url": "https://voir-anime.to/",
+        "url": [
+            "https://voiranime.fan/",
+            "https://voir-anime.lol/",
+            "https://voir-anime.to/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -943,7 +1000,11 @@
     },
     {
         "name": "ChiaAnime",
-        "url": "https://chiaanime.org/",
+        "url": [
+            "https://chiaanime.net/",
+            "https://chiaanime.in/",
+            "https://chiaanime.org/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -959,7 +1020,11 @@
     },
     {
         "name": "Anime-Dunya",
-        "url": "https://animedunya.net/",
+        "url": [
+            "https://anime-dunya.com/",
+            "https://animedunya.com/",
+            "https://animedunya.net/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -1007,7 +1072,11 @@
     },
     {
         "name": "Kisskh",
-        "url": "https://kisskh.co/",
+        "url": [
+            "https://kisskh.is/",
+            "https://kisskh.club/",
+            "https://kisskh.co/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -1039,7 +1108,12 @@
     },
     {
         "name": "Zenkai",
-        "url": "https://zenkai.app/",
+        "url": [
+            "https://zenkai.to/",
+            "https://zenkai.cfd/",
+            "https://zenkai.live/",
+            "https://zenkai.app/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -1063,7 +1137,10 @@
     },
     {
         "name": "MKissa",
-        "url": "https://allanime.to/",
+        "url": [
+            "https://mkissa.to/anime",
+            "https://allanime.to/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -1166,7 +1243,11 @@
     },
     {
         "name": "Flixer",
-        "url": "https://flixer.su",
+        "url": [
+            "https://flixer.gd/",
+            "https://flixer.cx/",
+            "https://flixer.su/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1182,7 +1263,11 @@
     },
     {
         "name": "FlickyStream",
-        "url": "https://flickystream.su/",
+        "url": [
+            "https://flickystream.mov/",
+            "https://flickystream.us/",
+            "https://flickystream.su/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1215,7 +1300,11 @@
     },
     {
         "name": "LordFlix",
-        "url": "https://lordflix.org/",
+        "url": [
+            "https://lordflix.cc/",
+            "https://lordflix.store/",
+            "https://lordflix.org/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1262,7 +1351,11 @@
     },
     {
         "name": "WatchFlix",
-        "url": "https://watchflix.to/",
+        "url": [
+            "https://watchflix.fun/",
+            "https://watchflix.bond/",
+            "https://watchflix.to/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1270,7 +1363,10 @@
     },
     {
         "name": "Moonflix",
-        "url": "https://moonflix.site/",
+        "url": [
+            "https://moonflix.website/",
+            "https://moonflix.site/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1301,7 +1397,10 @@
     },
     {
         "name": "Cinetaro",
-        "url": "https://cinetaro.tv/",
+        "url": [
+            "https://cinetaro.to/",
+            "https://cinetaro.tv/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1310,6 +1409,7 @@
     {
         "name": "HydraHD",
         "url": [
+            "https://hydrahd.to/",
             "https://hydrahd.com/",
             "https://hydrahd.gd/"
         ],
@@ -1320,7 +1420,11 @@
     },
     {
         "name": "Dulo.tv",
-        "url": "https://dulo.tv/",
+        "url": [
+            "https://dulo.mov/",
+            "https://dulo.site/",
+            "https://dulo.tv/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1337,7 +1441,10 @@
     },
     {
         "name": "HDMovix",
-        "url": "https://hdmovix.cc/",
+        "url": [
+            "https://hdmovix.top/",
+            "https://hdmovix.cc/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1370,7 +1477,11 @@
     },
     {
         "name": "LookMovie",
-        "url": "https://lookmovie2.to/",
+        "url": [
+            "https://lookmovie2.site/",
+            "https://lookmovies.work/",
+            "https://lookmovie2.to/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1378,7 +1489,10 @@
     },
     {
         "name": "NFlixTV",
-        "url": "https://nflixtv.cc/",
+        "url": [
+            "https://flixwatch.co/",
+            "https://nflixtv.cc/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1497,7 +1611,11 @@
     },
     {
         "name": "Crackle",
-        "url": "https://ww1.hair/crackle/",
+        "url": [
+            "https://crackle.works/",
+            "https://www.crackle.com/",
+            "https://ww1.hair/crackle/"
+        ],
         "category": [
             "streaming",
             "movies",
@@ -1506,7 +1624,11 @@
     },
     {
         "name": "MoviesJoy",
-        "url": "https://flixnet.site/moviesjoy/",
+        "url": [
+            "https://moviejoy.vu/",
+            "https://moviesjoy.dev/",
+            "https://flixnet.site/moviesjoy/"
+        ],
         "category": [
             "streaming",
             "movies",
@@ -1577,7 +1699,10 @@
     },
     {
         "name": "Ramoflix",
-        "url": "https://ramoflix.net/",
+        "url": [
+            "https://ramoflix.lol/",
+            "https://ramoflix.net/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1657,7 +1782,10 @@
     },
     {
         "name": "FMovies",
-        "url": "https://fmoviess.org/",
+        "url": [
+            "https://fmovies.ps/",
+            "https://ww.fmoviess.org/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1728,7 +1856,10 @@
     },
     {
         "name": "CinebyTV",
-        "url": "https://cinebytv.com/",
+        "url": [
+            "https://cinebytv.org/",
+            "https://cinebytv.com/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1744,7 +1875,10 @@
     },
     {
         "name": "123MoviesFree",
-        "url": "https://ww7.123moviesfree.net/",
+        "url": [
+            "https://123movies4ever.com/",
+            "https://ww7.123moviesfree.net/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1794,14 +1928,22 @@
     },
     {
         "name": "MangaKakalot",
-        "url": "https://mangakakalot.com/",
+        "url": [
+            "https://mangakakalot.gg/",
+            "https://www.manganato.gg/",
+            "https://mangakakalot.com/"
+        ],
         "category": [
             "manga"
         ]
     },
     {
         "name": "MangaNelo",
-        "url": "https://manganelo.com/",
+        "url": [
+            "https://www.nelomanga.net/",
+            "https://manganelo.vu/",
+            "https://m.manganelo.com/"
+        ],
         "category": [
             "manga"
         ]
@@ -1815,7 +1957,11 @@
     },
     {
         "name": "MangaReader",
-        "url": "https://www.mangareader.to/",
+        "url": [
+            "https://mangareader.world/",
+            "https://mangaread.org/",
+            "https://mangareader.to/"
+        ],
         "category": [
             "manga"
         ]
@@ -2004,7 +2150,10 @@
     },
     {
         "name": "ReaperScans",
-        "url": "https://reaperscans.com/",
+        "url": [
+            "https://reaperrscans.com/",
+            "https://reaperscans.com/"
+        ],
         "category": [
             "manga"
         ]
@@ -2019,7 +2168,10 @@
     },
     {
         "name": "Flame Scans",
-        "url": "https://flamescans.org/",
+        "url": [
+            "https://flamescans.org/",
+            "http://ww547.flamescans.org/?tkn=19vnMT3S"
+        ],
         "category": [
             "manga",
             "manhwa"
@@ -2027,7 +2179,10 @@
     },
     {
         "name": "TCB Scans",
-        "url": "https://tcbscans.me/",
+        "url": [
+            "https://tcbscans.info/",
+            "https://tcbscans.me/"
+        ],
         "category": [
             "manga"
         ]
@@ -2553,7 +2708,10 @@
     },
     {
         "name": "IPTV Generator",
-        "url": "https://iptvgen.pages.dev/",
+        "url": [
+            "https://m3uedit.com/",
+            "https://app.m3u.in/"
+        ],
         "category": [
             "streaming",
             "app"
@@ -2583,7 +2741,11 @@
     },
     {
         "name": "Senpai Stream",
-        "url": "https://senpai-stream.bond/",
+        "url": [
+            "https://senpaistream.app/",
+            "https://senpai-stream.plus/",
+            "https://senpai-stream.bond/"
+        ],
         "category": [
             "anime",
             "streaming"
@@ -2781,7 +2943,11 @@
     },
     {
         "name": "AnimeLok",
-        "url": "https://animelok.live/",
+        "url": [
+            "https://animelok.cc/",
+            "https://animelok.co/",
+            "https://animelok.live/"
+        ],
         "category": [
             "anime",
             "streaming"
@@ -2789,7 +2955,10 @@
     },
     {
         "name": "Mod Syndicate",
-        "url": "https://www.modsyndicate.com/",
+        "url": [
+            "https://modsyndicate.in/",
+            "https://www.modsyndicate.com/"
+        ],
         "category": [
             "anime",
             "streaming"
@@ -2814,7 +2983,11 @@
     },
     {
         "name": "Anisurge",
-        "url": "https://www.anisurge.lol/",
+        "url": [
+            "https://mizuki.to/",
+            "https://anisurge.com/",
+            "https://www.anisurge.lol/"
+        ],
         "category": [
             "anime",
             "streaming"
