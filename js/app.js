@@ -12,15 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let isChecking = false;
 
   const BATCH_SIZE = 10;
-  // Send a few batches at once so a full 360-site sweep finishes well inside
-  // the 60s window instead of taking minutes.
-  const BATCH_CONCURRENCY = 3;
 
-  // Automatic checking: once when the page opens, then again 60s after each
-  // run finishes (so a slow run can never overlap the next one).
-  const AUTO_RECHECK_MS = 60 * 1000;
+  // Automatic checking: once when the page opens, then again 20 minutes later,
+  // and so on. Runs never overlap.
+  const AUTO_RECHECK_MS = 20 * 60 * 1000;
   let autoTimer = null;
   let lastCheckedAt = null;
+  let checkProgress = null;
+
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   function normalizeUrl(url) {
     if (Array.isArray(url)) url = url[0];
@@ -170,6 +170,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    if (checkProgress) {
+      checkedText += ` · checking ${checkProgress.done}/${checkProgress.total}`;
+    }
+
     stats.textContent =
       `${filtered.length} shown — ` +
       `${online} online | ${offline} unreachable | ` +
@@ -208,34 +212,45 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   }
 
-  async function checkBatch(batch, startIndex) {
+  async function checkBatch(batch, startIndex, attempt = 0) {
     const indices = batch.map((site, i) => startIndex + i);
 
-    const response = await fetch(`${API}/check-batch`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ indices })
-    });
+    try {
+      const response = await fetch(`${API}/check-batch`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ indices })
+      });
 
-    if (!response.ok) {
-      throw new Error(`Batch check failed: HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (!Array.isArray(data.results)) {
-      throw new Error("Invalid batch response");
-    }
-
-    data.results.forEach(result => {
-      const key = normalizeUrl(result.url);
-
-      if (key) {
-        statusMap[key] = result.status;
+      if (!response.ok) {
+        throw new Error(`Batch check failed: HTTP ${response.status}`);
       }
-    });
+
+      const data = await response.json();
+
+      if (!Array.isArray(data.results)) {
+        throw new Error("Invalid batch response");
+      }
+
+      data.results.forEach(result => {
+        const key = normalizeUrl(result.url);
+
+        if (key) {
+          statusMap[key] = result.status;
+        }
+      });
+    } catch (error) {
+      // The free API instance occasionally drops a request; a couple of
+      // retries keep a single failure from losing a whole batch.
+      if (attempt < 2) {
+        await delay(2000);
+        return checkBatch(batch, startIndex, attempt + 1);
+      }
+
+      throw error;
+    }
   }
 
   async function recheckAll() {
@@ -260,12 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
       batches.push({ start: i, size: Math.min(BATCH_SIZE, total - i) });
     }
 
-    let nextBatch = 0;
-
-    const runWorker = async () => {
-      while (nextBatch < batches.length) {
-        const { start, size } = batches[nextBatch++];
-
+    try {
+      for (const { start, size } of batches) {
         try {
           await checkBatch(sites.slice(start, start + size), start);
         } catch (error) {
@@ -274,6 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         completed += size;
+        checkProgress = { done: completed, total };
 
         if (recheckBtn) {
           recheckBtn.textContent = `checking ${completed}/${total}`;
@@ -281,14 +293,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         render();
       }
-    };
-
-    try {
-      const workerCount = Math.min(BATCH_CONCURRENCY, batches.length);
-      await Promise.all(Array.from({ length: workerCount }, runWorker));
     } finally {
       isChecking = false;
       lastCheckedAt = Date.now();
+      checkProgress = null;
 
       if (recheckBtn) {
         recheckBtn.disabled = false;
@@ -309,9 +317,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  function scheduleAutoCheck(delay = AUTO_RECHECK_MS) {
+  function scheduleAutoCheck(ms = AUTO_RECHECK_MS) {
     clearTimeout(autoTimer);
-    autoTimer = setTimeout(runAutoCheck, delay);
+    autoTimer = setTimeout(runAutoCheck, ms);
   }
 
   async function runAutoCheck() {
@@ -330,9 +338,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const startedAt = Date.now();
     await recheckAll();
 
-    // Keep a steady ~60s cadence: measure from the start of the run so a slow
-    // sweep doesn't push the next one far out, but never overlap runs.
-    scheduleAutoCheck(Math.max(15000, AUTO_RECHECK_MS - (Date.now() - startedAt)));
+    // Keep a steady 20-minute cadence, measured from the start of the run so a
+    // slow sweep doesn't push the next one out, but never overlap runs.
+    scheduleAutoCheck(Math.max(60000, AUTO_RECHECK_MS - (Date.now() - startedAt)));
   }
 
   document.addEventListener("visibilitychange", () => {

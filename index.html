@@ -17,12 +17,12 @@
   <h1>uptime<span>/</span>/// anime &amp; manga mirrors</h1>
   <p class="sub">
     A directory of streaming and reading mirrors. Every link is checked
-    automatically when the page opens, then rechecked every 60 seconds. Sites
+    automatically when the page opens, then rechecked every 20 minutes. Sites
     that block cross-origin requests show as "unverified" rather than down, so
     always try the link if you're unsure.
   </p>
   <div class="controls">
-    <button id="recheck">recheck all</button>
+    <button id="recheck" hidden>recheck all</button>
     <div class="tabs" id="tabs">
             <button class="tab active" data-tab="all">All</button>
       <button class="tab" data-tab="streaming">Streaming</button>
@@ -56,7 +56,7 @@
 </div>
 </main>
 <footer>
-  <p>// every link is checked automatically on page load and again every 60 seconds.
+  <p>// every link is checked automatically on page load and again every 20 minutes.
   browsers and proxies block some checks (CORS/Cloudflare), so an "unverified"
   mirror is often perfectly fine — open it to confirm.</p>
 </footer>
