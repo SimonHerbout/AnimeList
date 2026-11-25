@@ -208,7 +208,10 @@
     },
     {
         "name": "Animelibre",
-        "url": "https://animelibre.com/en",
+        "url": [
+            "https://french-anime.fr/",
+            "https://komanime.com/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -217,8 +220,8 @@
     {
         "name": "Zairaku",
         "url": [
-            "https://zairaku.site/",
-            "https://www.zairaku.site/home"
+            "https://guruanime.com/",
+            "https://anishows.org/"
         ],
         "category": [
             "streaming",
@@ -235,7 +238,10 @@
     },
     {
         "name": "AnimeVortex",
-        "url": "https://animevortex.com/home",
+        "url": [
+            "https://animevortex.xyz/",
+            "https://animevortex.net/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -504,8 +510,8 @@
     {
         "name": "AnimeVerse",
         "url": [
-            "https://animeverse.cc/",
-            "https://animeverse.to/"
+            "https://animeflix.co/",
+            "https://1234anime.com/"
         ],
         "category": [
             "streaming",
@@ -515,8 +521,8 @@
     {
         "name": "KickAssAnime",
         "url": [
-            "https://kaa.mx/",
-            "https://kickass-anime.ro/"
+            "https://kaa.lt/",
+            "https://kickass-anime.com/"
         ],
         "category": [
             "streaming",
@@ -552,7 +558,10 @@
     },
     {
         "name": "AniSnatch",
-        "url": "https://anisnatch.com/",
+        "url": [
+            "https://anisnatch.lat/",
+            "https://anisnatch.xyz/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -775,7 +784,10 @@
     },
     {
         "name": "Animoye",
-        "url": "https://animoye.com/",
+        "url": [
+            "https://animixstream.live/",
+            "https://dubonly.com/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -784,8 +796,8 @@
     {
         "name": "Aniversehd",
         "url": [
-            "https://aniversehd.xyz/",
-            "https://aniversehd.com/"
+            "https://anikuraa.com/",
+            "https://anishows.org/"
         ],
         "category": [
             "streaming",
@@ -903,7 +915,6 @@
     {
         "name": "SoraStream",
         "url": [
-            "https://sorastream.org/",
             "https://sorastream.com/"
         ],
         "category": [
@@ -952,7 +963,10 @@
     },
     {
         "name": "Turkanime",
-        "url": "https://www.turkanime.tv/",
+        "url": [
+            "https://turkanime.com.tr/",
+            "https://turkanime.info/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -1040,7 +1054,9 @@
     },
     {
         "name": "FireAnime",
-        "url": "https://fireanime.xyz/",
+        "url": [
+            "https://github.com/XenTeckzX/FireAnime"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -1331,7 +1347,9 @@
     },
     {
         "name": "Movish",
-        "url": "https://movish.net/",
+        "url": [
+            "https://movish.to/"
+        ],
         "category": [
             "streaming",
             "movies"
@@ -1950,7 +1968,10 @@
     },
     {
         "name": "MangaPark",
-        "url": "https://mangapark.net/",
+        "url": [
+            "https://mangapark.tv/",
+            "https://mangapark.co.uk/"
+        ],
         "category": [
             "manga"
         ]
@@ -2259,7 +2280,10 @@
     },
     {
         "name": "ManhwaRaw",
-        "url": "https://manhwaraw.com/",
+        "url": [
+            "https://manhwaraw.net/",
+            "https://readmanhwaraw.com/"
+        ],
         "category": [
             "manhwa"
         ]
@@ -2680,7 +2704,10 @@
     },
     {
         "name": "Comicso",
-        "url": "https://comicso.com/",
+        "url": [
+            "https://readcomicbooks.net/",
+            "https://comic-rush.com/"
+        ],
         "category": [
             "manga"
         ]
