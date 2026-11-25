@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const BATCH_SIZE = 10;
 
+  // Automatic checking: once when the page opens, then again 60s after each
+  // run finishes (so a slow run can never overlap the next one).
+  const AUTO_RECHECK_MS = 60 * 1000;
+  let autoTimer = null;
+  let lastCheckedAt = null;
+
   function normalizeUrl(url) {
     if (Array.isArray(url)) url = url[0];
     if (typeof url !== "string") return "";
@@ -151,10 +157,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const unverified = filtered.length - online - offline;
 
+    let checkedText = "";
+    if (lastCheckedAt) {
+      checkedText =
+        " · checked " + new Date(lastCheckedAt).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        });
+    }
+
     stats.textContent =
       `${filtered.length} shown — ` +
       `${online} online | ${offline} unreachable | ` +
-      `${unverified} unverified | ${sites.length} total`;
+      `${unverified} unverified | ${sites.length} total` +
+      checkedText;
   }
 
   async function loadSites() {
@@ -219,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function recheckAll() {
-    if (isChecking || sites.length === 0) return;
+    if (isChecking || sites.length === 0) return false;
 
     isChecking = true;
 
@@ -231,10 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let completed = 0;
     let failedBatches = 0;
 
-    sites.forEach(site => {
-      statusMap[normalizeUrl(site.url)] = "unverified";
-    });
-
+    // Keep the previous results visible while a new run is in progress: each
+    // batch updates its own entries as soon as its response arrives.
     render();
 
     try {
@@ -246,10 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
           failedBatches++;
           console.error("Batch error:", error);
-
-          batch.forEach(site => {
-            statusMap[normalizeUrl(site.url)] = "unverified";
-          });
         }
 
         completed += batch.length;
@@ -262,6 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } finally {
       isChecking = false;
+      lastCheckedAt = Date.now();
 
       if (recheckBtn) {
         recheckBtn.disabled = false;
@@ -278,7 +290,43 @@ document.addEventListener("DOMContentLoaded", () => {
         failedBatches
       });
     }
+
+    return true;
   }
+
+  function scheduleAutoCheck(delay = AUTO_RECHECK_MS) {
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(runAutoCheck, delay);
+  }
+
+  async function runAutoCheck() {
+    // Don't burn requests while the tab is in the background; resume as soon
+    // as the user comes back to the page.
+    if (document.visibilityState === "hidden") {
+      return;
+    }
+
+    // The API is on a free host that sleeps, so retry the list load if the
+    // first attempt failed or returned nothing.
+    if (sites.length === 0) {
+      await loadSites();
+    }
+
+    await recheckAll();
+    scheduleAutoCheck();
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "visible" || isChecking) return;
+
+    const stale =
+      !lastCheckedAt || Date.now() - lastCheckedAt >= AUTO_RECHECK_MS;
+
+    if (stale) {
+      clearTimeout(autoTimer);
+      runAutoCheck();
+    }
+  });
 
   search?.addEventListener("input", () => {
     if (typeof Pagination !== "undefined") {
@@ -287,7 +335,11 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   });
 
-  recheckBtn?.addEventListener("click", recheckAll);
+  recheckBtn?.addEventListener("click", async () => {
+    clearTimeout(autoTimer);
+    await recheckAll();
+    scheduleAutoCheck();
+  });
 
   if (typeof Tabs !== "undefined") {
     Tabs.init?.(() => {
@@ -309,5 +361,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  loadSites();
+  // Check every link as soon as the page opens, then repeat every 60s.
+  loadSites().then(() => scheduleAutoCheck(0));
 });

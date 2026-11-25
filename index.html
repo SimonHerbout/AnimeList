@@ -16,9 +16,10 @@
   <p class="eyebrow">// mirror_status_board</p>
   <h1>uptime<span>/</span>/// anime &amp; manga mirrors</h1>
   <p class="sub">
-    A directory of streaming and reading mirrors. Click "recheck" to ping every
-    site from your browser — sites that block cross-origin requests will show
-    as "unverified" rather than down, so always try the link if you're unsure.
+    A directory of streaming and reading mirrors. Every link is checked
+    automatically when the page opens, then rechecked every 60 seconds. Sites
+    that block cross-origin requests show as "unverified" rather than down, so
+    always try the link if you're unsure.
   </p>
   <div class="controls">
     <button id="recheck">recheck all</button>
@@ -55,9 +56,9 @@
 </div>
 </main>
 <footer>
-  <p>// click recheck to test each link from your browser. browsers block most cross-site
-  status checks (CORS), so an "unverified" mirror is often perfectly fine — open it
-  to confirm. for a reliable always-on monitor, run a small server-side checker instead.</p>
+  <p>// every link is checked automatically on page load and again every 60 seconds.
+  browsers and proxies block some checks (CORS/Cloudflare), so an "unverified"
+  mirror is often perfectly fine — open it to confirm.</p>
 </footer>
 </body>
 </html>
