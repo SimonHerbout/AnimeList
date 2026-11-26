@@ -1,0 +1,10 @@
+{
+    "simon": {
+        "salt": "35f3fd8acfc5fd2f65910cb4a7cdf6b6",
+        "hash": "9be190ebedbe5485868f8290c63c872ddd8c38f6485c8185d4801abc9f690467",
+        "n": 16384,
+        "r": 8,
+        "p": 1,
+        "note": "scrypt hash only - the password is not stored anywhere in this repo"
+    }
+}

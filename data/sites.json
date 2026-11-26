@@ -1938,6 +1938,268 @@
         ]
     },
     {
+        "name": "Nxsha",
+        "url": "https://nxsha.space/",
+        "category": [
+            "streaming",
+            "movies",
+            "series",
+            "anime"
+        ]
+    },
+    {
+        "name": "HiMovies",
+        "url": "https://himovies-sx.cyou/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Tubi",
+        "url": "https://tubitv.com/home",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "SolarMovie",
+        "url": "https://ww.solarmovie2.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "WatchFree",
+        "url": "https://watchfree-official.live/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "StreamM4u",
+        "url": "https://streamm4u.vip/home",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "SpaceMov",
+        "url": "https://spacemov-tv.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "FilmRise",
+        "url": "https://filmrise.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "StreamLord",
+        "url": "https://streamlord.to/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Internet Archive",
+        "url": "https://archive.org/details/movies",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "Yidio",
+        "url": "https://www.yidio.com/",
+        "category": [
+            "tools",
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Plex",
+        "url": "https://www.plex.tv/watch-free/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Pluto TV",
+        "url": "https://static-homepage-en.pluto.tv/welcome",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "The Roku Channel",
+        "url": "https://therokuchannel.roku.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Afdah",
+        "url": "https://afdah2.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Filmzie",
+        "url": "https://filmzie.com/home",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "GoMovies",
+        "url": "https://gomoviessc.org/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "MyFlixer",
+        "url": "https://myflixerz.to/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Tiny Zone",
+        "url": "https://ww4.tinyzone.org/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "MyBundle TV",
+        "url": "https://mybundle.tv/",
+        "category": [
+            "tools",
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Fawesome TV",
+        "url": "https://fawesome.tv/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "LosMovies",
+        "url": "https://losmovies.city/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "MoviesFoundOnline",
+        "url": "https://moviesfoundonline.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "1HD",
+        "url": "https://1hd.gg/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "TheFlixer",
+        "url": "https://theflixertv.to/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "M4UFree",
+        "url": "https://ww2.m4ufree.lat/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "Kanopy",
+        "url": "https://www.kanopy.com/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "XUMO TV",
+        "url": "https://play.xumo.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "TuduTV",
+        "url": "https://tudutv.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
         "name": "MangaDex",
         "url": "https://mangadex.org/",
         "category": [

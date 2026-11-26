@@ -6,13 +6,31 @@
 <link rel="icon" type="image/x-icon" href="img/fav.webp">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/config.js" defer></script>
+<script src="js/auth.js" defer></script>
 <script src="js/tabs.js" defer></script>
 <script src="js/pagination.js" defer></script>
 <script src="js/app.js" defer></script>
 <title>uptime/// anime mirror board</title>
 </head>
 <body>
+<div class="login-screen" id="login-screen">
+  <form class="login-panel" id="login-form" novalidate>
+    <p class="eyebrow">// access_control</p>
+    <h2>sign in</h2>
+    <p class="login-sub">Private mirror board. Use the account you were given.</p>
+    <label for="login-user">user</label>
+    <input id="login-user" name="username" type="text" autocomplete="username" spellcheck="false" required>
+    <label for="login-pass">password</label>
+    <input id="login-pass" name="password" type="password" autocomplete="current-password" required>
+    <p class="login-error" id="login-error" role="alert"></p>
+    <button type="submit" id="login-submit">unlock</button>
+  </form>
+</div>
 <header>
+  <div class="session-chip" id="session-chip" hidden>
+    <span class="session-name" id="session-user"></span>
+    <button type="button" id="logout-btn">sign out</button>
+  </div>
   <p class="eyebrow">// mirror_status_board</p>
   <h1>uptime<span>/</span>/// anime &amp; manga mirrors</h1>
   <p class="sub">

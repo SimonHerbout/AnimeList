@@ -2,6 +2,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const API = window.ANIME_API_BASE || "https://animelist-tusl.onrender.com";
 
+  const auth = window.AniQuestAuth;
+
+  const apiFetch = (url, init) =>
+    auth?.apiFetch ? auth.apiFetch(url, init) : fetch(url, init);
+
+  const signedOut = message => {
+    if (auth?.requireLogin) auth.requireLogin(message);
+  };
+
   const grid = document.getElementById("grid");
   const search = document.getElementById("search");
   const recheckBtn = document.getElementById("recheck");
@@ -10,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let sites = [];
   let statusMap = {};
   let isChecking = false;
+  let authLost = false;
 
   const BATCH_SIZE = 10;
 
@@ -183,7 +193,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadSites() {
     try {
-      const response = await fetch(`${API}/sites`);
+      const response = await apiFetch(`${API}/sites`);
+
+      if (response.status === 401) {
+        signedOut("Session expired. Sign in again.");
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(`Sites API error: ${response.status}`);
@@ -216,13 +231,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const indices = batch.map((site, i) => startIndex + i);
 
     try {
-      const response = await fetch(`${API}/check-batch`, {
+      const response = await apiFetch(`${API}/check-batch`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ indices })
       });
+
+      if (response.status === 401) {
+        authLost = true;
+        signedOut("Session expired. Sign in again.");
+        throw new Error("Authentication required");
+      }
 
       if (!response.ok) {
         throw new Error(`Batch check failed: HTTP ${response.status}`);
@@ -244,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       // The free API instance occasionally drops a request; a couple of
       // retries keep a single failure from losing a whole batch.
-      if (attempt < 2) {
+      if (attempt < 2 && !authLost) {
         await delay(2000);
         return checkBatch(batch, startIndex, attempt + 1);
       }
@@ -277,6 +298,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       for (const { start, size } of batches) {
+        if (authLost) break;
+
         try {
           await checkBatch(sites.slice(start, start + size), start);
         } catch (error) {
@@ -323,6 +346,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function runAutoCheck() {
+    // Nothing to do until the user is signed in.
+    if (authLost) return;
+
     // Don't burn requests while the tab is in the background; resume as soon
     // as the user comes back to the page.
     if (document.visibilityState === "hidden") {
@@ -388,6 +414,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Check every link as soon as the page opens, then repeat every 60s.
-  loadSites().then(() => scheduleAutoCheck(0));
+  // Check every link as soon as the page opens, then repeat every 20 minutes.
+  // Nothing runs until the access gate has a valid token.
+  (window.AniQuestAuth?.ready || Promise.resolve()).then(() => {
+    loadSites().then(() => scheduleAutoCheck(0));
+  });
 });

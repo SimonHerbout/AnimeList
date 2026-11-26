@@ -549,4 +549,166 @@ footer a:hover {
 
 #pageInfo {
   color: var(--dim);
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* --------------------------------------------------------------- access gate */
+body.locked {
+  overflow: hidden;
+}
+
+.login-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(600px 300px at 50% 0%, rgba(139, 127, 217, 0.16), transparent 70%),
+    var(--ink);
+}
+
+.login-screen[hidden] {
+  display: none;
+}
+
+.login-panel {
+  width: 100%;
+  max-width: 360px;
+  background: var(--panel);
+  border: 1px solid #2a2a35;
+  border-top: 2px solid var(--unknown);
+  padding: 28px 26px 24px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.login-panel .eyebrow {
+  margin: 0;
+}
+
+.login-panel h2 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+
+.login-sub {
+  margin: 0 0 6px;
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.login-panel label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.login-panel input {
+  background: var(--ink);
+  border: 1px solid #2a2a35;
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 11px 12px;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.login-panel input:focus {
+  border-color: var(--unknown);
+}
+
+.login-panel button[type="submit"] {
+  margin-top: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.login-panel button[type="submit"]:hover {
+  background: var(--online);
+}
+
+.login-panel button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+.login-panel button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.login-error {
+  min-height: 16px;
+  margin: 0;
+  color: var(--down);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.session-chip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  margin-bottom: 22px;
+}
+
+.session-chip[hidden] {
+  display: none;
+}
+
+.session-name {
+  color: var(--unknown);
+  letter-spacing: 0.08em;
+}
+
+.session-name::before {
+  content: "@";
+  opacity: 0.6;
+}
+
+#logout-btn {
+  background: transparent;
+  color: var(--dim);
+  border: 1px solid #2a2a35;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+#logout-btn:hover {
+  border-color: var(--down);
+  color: var(--down);
+}
+/*# sourceMappingURL=style.css.map */
