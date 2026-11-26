@@ -1,15 +1,7 @@
 {
-    "simon": {
-        "salt": "35f3fd8acfc5fd2f65910cb4a7cdf6b6",
-        "hash": "9be190ebedbe5485868f8290c63c872ddd8c38f6485c8185d4801abc9f690467",
-        "n": 16384,
-        "r": 8,
-        "p": 1,
-        "note": "scrypt hash only - the password is not stored anywhere in this repo"
-    },
-    "sofie": {
-        "salt": "7de11743dc6d305894f5845949b3dc8b",
-        "hash": "25330a5ee9c0832a1b8c07d699496b1f052843fa9e8ce6262e40663f9910277b",
+    "jeff": {
+        "salt": "6d4561c9df7fbb7608bc571a01176a2b",
+        "hash": "be8c1ab7685dac698612d04d1415cb06a39fc8ed7f822336b1206fe92e5eab3c",
         "n": 16384,
         "r": 8,
         "p": 1,
