@@ -2233,6 +2233,24 @@
         ]
     },
     {
+        "name": "FreeFlix",
+        "url": "https://freeflix.pw/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "SFlix",
+        "url": "https://wsflix.com/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
         "name": "MangaDex",
         "url": "https://mangadex.org/",
         "category": [
