@@ -2206,6 +2206,33 @@
         ]
     },
     {
+        "name": "MoviesUS",
+        "url": "https://moviespro.watch/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "1Movies / FlixNet",
+        "url": "https://flixnet.cfd/1movies/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
+        "name": "GoWatch",
+        "url": "https://gowatch.to/",
+        "category": [
+            "streaming",
+            "movies",
+            "series"
+        ]
+    },
+    {
         "name": "MangaDex",
         "url": "https://mangadex.org/",
         "category": [
