@@ -1186,32 +1186,6 @@
         ]
     },
     {
-        "name": "HIDIVE",
-        "url": "https://www.hidive.com/",
-        "category": [
-            "streaming",
-            "anime"
-        ]
-    },
-    {
-        "name": "Netflix",
-        "url": "https://www.netflix.com/",
-        "category": [
-            "streaming",
-            "movies",
-            "series"
-        ]
-    },
-    {
-        "name": "Hulu",
-        "url": "https://www.hulu.com/",
-        "category": [
-            "streaming",
-            "movies",
-            "series"
-        ]
-    },
-    {
         "name": "Bilibili",
         "url": "https://www.bilibili.tv/",
         "category": [
