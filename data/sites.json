@@ -249,7 +249,10 @@
     },
     {
         "name": "Aniwatch",
-        "url": ["https://aniwatch.com.ro/", "https://aniwatchtv.com.ro/"],
+        "url": [
+            "https://aniwatch.com.ro/",
+            "https://aniwatchtv.com.ro/"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -604,7 +607,10 @@
     },
     {
         "name": "All-Wish",
-        "url": "https://all-wish.me/",
+        "url": [
+            "https://all-wish.me/",
+            "https://all-wish.me/home"
+        ],
         "category": [
             "streaming",
             "anime"
@@ -1237,7 +1243,7 @@
     {
         "name": "Rive",
         "url": [
-            "https://www.rivestream.app/", 
+            "https://www.rivestream.app/",
             "https://rivestream.ru/",
             "https://rivestream.vip/"
         ],
@@ -3021,14 +3027,6 @@
         ]
     },
     {
-        "name": "All-Wish",
-        "url": "https://all-wish.me/home",
-        "category": [
-            "anime",
-            "streaming"
-        ]
-    },
-    {
         "name": "Senpai Stream",
         "url": [
             "https://senpaistream.app/",
@@ -3098,7 +3096,7 @@
     },
     {
         "name": "Kaguya",
-        "url":"https://kaguya.io/",
+        "url": "https://kaguya.io/",
         "category": [
             "tracking"
         ]
@@ -3385,6 +3383,46 @@
             "streaming",
             "anime",
             "manga"
+        ]
+    },
+    {
+        "name": "5Movies",
+        "url": "https://stcine.com/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "BMovies",
+        "url": "https://ww.bmovies.vip/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "UWatchFree",
+        "url": "https://uwatchfree.movie/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "1Movies",
+        "url": "https://1movies-official.lol/",
+        "category": [
+            "streaming",
+            "movies"
+        ]
+    },
+    {
+        "name": "123Movies",
+        "url": "https://123movies-xyz.pages.dev/",
+        "category": [
+            "streaming",
+            "movies"
         ]
     }
 ]

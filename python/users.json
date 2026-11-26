@@ -6,5 +6,13 @@
         "r": 8,
         "p": 1,
         "note": "scrypt hash only - the password is not stored anywhere in this repo"
+    },
+    "sofie": {
+        "salt": "7de11743dc6d305894f5845949b3dc8b",
+        "hash": "25330a5ee9c0832a1b8c07d699496b1f052843fa9e8ce6262e40663f9910277b",
+        "n": 16384,
+        "r": 8,
+        "p": 1,
+        "note": "scrypt hash only - the password is not stored anywhere in this repo"
     }
 }
